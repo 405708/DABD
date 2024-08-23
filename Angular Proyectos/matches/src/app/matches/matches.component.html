@@ -1,0 +1,20 @@
+<h1 style="color: aliceblue;">Componente match</h1>
+<h2 style="color:orange">Match es mi nombre</h2>
+<div>
+  <input type="text" [value]="texto">
+<button (click)="cambiarTexto()">Cambio de Texto</button>
+</div>
+
+<div>
+  <h4 style="color: aliceblue;">Para el Tecleo Masivo</h4>
+  <input type="text" [value]="texto" (input)="tecleoMasivo($event)"> <!--Evento de tecleo-->
+  <p style="color: greenyellow;">
+    {{textoMasivo}}
+  </p>
+</div>
+
+
+<h1 style="color: aliceblue;">Componente Match Selector</h1>
+<app-match-selector></app-match-selector> <!--Referencia a otro componente-->
+
+
