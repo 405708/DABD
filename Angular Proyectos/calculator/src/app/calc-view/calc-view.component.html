@@ -1,8 +1,13 @@
-<h3>Numero 1</h3>
-<input type="number">
-<h3>Numero 2</h3>
-<input type="number">
+<h2>Numero 1</h2>
+<input type="number" [value]="numero1" (input)="updateNumero1($event)">
+<h2>Numero 2</h2>
+<input type="number" [value]="numero2" (input)="updateNumero2($event)">
 
-<p>Resultado: Traer del hijo</p>
+<p>Resultado: {{resultadoOperacion}}</p>
 
-<app-calc-actions></app-calc-actions>
+<app-calc-actions 
+    [numero1]="numero1" 
+    [numero2]="numero2" 
+    (resultadoObtenido)="onOperation($event)"
+    (borrarNumeros)="onBorrarNumeros()">
+</app-calc-actions>

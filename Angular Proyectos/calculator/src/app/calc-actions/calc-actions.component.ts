@@ -1,23 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calc-actions',
   standalone: true,
   imports: [],
   templateUrl: './calc-actions.component.html',
-  styleUrl: './calc-actions.component.css'
+  styleUrls: ['./calc-actions.component.css']
 })
 export class CalcActionsComponent {
+
+  @Input() numero1:number = 0;
+  @Input() numero2:number = 0;
+  @Output() resultadoObtenido = new EventEmitter<number>();
+  @Output() borrarNumeros = new EventEmitter<void>();
+
   sumar(){
-    console.log('Sumar');
+    const resultado = this.numero1 + this.numero2;
+    console.log(resultado)
+    this.resultadoObtenido.emit(resultado);
   }
   restar(){
-    console.log('Restar');
+    const resultado = this.numero1 - this.numero2;
+    this.resultadoObtenido.emit(resultado);
   }
   multiplicar(){
-    console.log('Multiplicar');
+    const resultado = this.numero1 * this.numero2;
+    this.resultadoObtenido.emit(resultado);
   }
   dividir(){
-    console.log('Dividir');
+    const resultado = this.numero1 / this.numero2;
+      this.resultadoObtenido.emit(resultado);
+  }
+  borrar(){
+    this.borrarNumeros.emit();
   }
 }
