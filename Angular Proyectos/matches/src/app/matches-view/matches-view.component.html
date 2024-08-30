@@ -2,8 +2,16 @@
 <h1 style="color: aliceblue;">Componente de Match Info</h1>
 <h2 style="color: hotpink;">Soy la info del Match</h2>
 
-<p style="color: antiquewhite;" [style.display]="
-  matchSelected ? 'block' : 'none'">Seleccionado: {{matchSelected}}</p>
-<app-match-info [match]="matches[0]" (selected)="onSelected($event)"></app-match-info> <!--Referencia a otro componente le paso parte del arreglo en mi ts-->
-<app-match-info [match]="matches[1]" (selected)="onSelected($event)"></app-match-info>
-<app-match-info [match]="matches[2]" (selected)="onSelected($event)"></app-match-info>
+<!--Uso del ngIf-->
+<p style="color: antiquewhite;"
+    *ngIf="matchSelected">
+    Seleccionado: {{matchSelected}}
+</p> 
+
+ <!--Uso del ngFor-->
+ <!--Busco en mi lista matches, un match y lo muestro, hago esto por cada match en matches-->
+<app-match-info 
+  *ngFor="let match of matches" 
+  [match]="match" 
+  (selected)="onSelected($event)">
+</app-match-info>

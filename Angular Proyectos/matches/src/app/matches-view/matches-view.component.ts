@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatchInfoComponent } from '../match-info/match-info.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-matches-view',
   standalone: true,
-  imports: [MatchInfoComponent],
+  imports: [MatchInfoComponent, CommonModule],
   templateUrl: './matches-view.component.html',
   styleUrl: './matches-view.component.css'
 })
