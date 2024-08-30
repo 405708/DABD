@@ -16,7 +16,6 @@ export class CalcActionsComponent {
 
   sumar(){
     const resultado = this.numero1 + this.numero2;
-    console.log(resultado)
     this.resultadoObtenido.emit(resultado);
   }
   restar(){
@@ -28,10 +27,24 @@ export class CalcActionsComponent {
     this.resultadoObtenido.emit(resultado);
   }
   dividir(){
-    const resultado = this.numero1 / this.numero2;
+    if(this.numero2 === 0){
+      alert('No se puede dividir por 0');
+    }
+    else{
+      const resultado = this.numero1 / this.numero2;
       this.resultadoObtenido.emit(resultado);
+    }
   }
   borrar(){
     this.borrarNumeros.emit();
   }
+  potencia(){
+    const resultado = Math.pow(this.numero1, this.numero2);
+    this.resultadoObtenido.emit(resultado);
+  }
+  raiz(){
+    const resultado = Math.sqrt(this.numero1);
+    this.resultadoObtenido.emit(resultado);
+  }
+
 }
