@@ -2,16 +2,35 @@
 <h1 style="color: aliceblue;">Componente de Match Info</h1>
 <h2 style="color: hotpink;">Soy la info del Match</h2>
 
-<!--Uso del ngIf-->
-<p style="color: antiquewhite;"
-    *ngIf="matchSelected">
-    Seleccionado: {{matchSelected}}
-</p> 
+<!--Uso del ngIf con else-->
+<!--Uso de ngStyle-->
+<!--Uso de ngModel-->
+<!--Uso de PIPES-->
+@if(matchSelected) {
+  <p [ngStyle]="{color:'antiquewhite'}">
+    Seleccionado: {{matchSelected | uppercase}}
+  </p>
+  <input type="text" [(ngModel)]="matchSelected">
+} @else {
+  <p [ngStyle]="{color:'antiquewhite'}">
+    No hay match seleccionado
+  </p>
+}
 
- <!--Uso del ngFor-->
- <!--Busco en mi lista matches, un match y lo muestro, hago esto por cada match en matches-->
-<app-match-info 
-  *ngFor="let match of matches" 
-  [match]="match" 
-  (selected)="onSelected($event)">
-</app-match-info>
+<!--Nuevo Uso de ngFor-->
+<!--Uso de ngClass(mirar css)-->
+@for(match of matches; track match; let index=$index) {
+  <app-match-info 
+    [ngClass]="{'title': index>=0}" 
+    [match]="match.name"
+    (selected)="onSelected($event)">
+  </app-match-info>
+}
+
+<button (click)="onDeleteLastMatch()">Eliminar Ultimo Partido</button>
+
+<!--Uso de PIPES-->
+<p [ngStyle]="{color:'orange'}">Mi Fecha {{fecha|date}}</p>
+<!--ngSwitch-->
+<!--Directivas personalizadas-->
+
