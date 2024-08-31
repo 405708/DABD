@@ -1,0 +1,6 @@
+<h4>Conversación</h4>
+<!--Aca iria un for para cada mensaje en un array-->
+@for(mensaje of mensajes; track mensaje;let index=$index){
+    <p> {{mensaje.nombre}} : {{mensaje.texto}}</p>
+}
+<app-chat-mensajes (mensaje)="agregarMensaje($event)"></app-chat-mensajes>
