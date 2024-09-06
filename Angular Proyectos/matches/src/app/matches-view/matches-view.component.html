@@ -7,10 +7,18 @@
 <!--Uso de ngModel-->
 <!--Uso de PIPES-->
 @if(matchSelected) {
-  <p [ngStyle]="{color:'antiquewhite'}">
-    Seleccionado: {{matchSelected | uppercase}}
+  <p style="text-align: center;" [ngStyle]="{color:'antiquewhite'}">
+    Seleccionado: {{matchSelected.local + ' vs ' + matchSelected.visitante | uppercase}}
   </p>
-  <input type="text" [(ngModel)]="matchSelected">
+  <div class="infoModified">
+    <h3 [ngStyle]="{color:'antiquewhite'}">Modificar Partido</h3>
+    <input type="text" [(ngModel)]="matchSelected.local" required>
+    <input type="text" [(ngModel)]="matchSelected.resultlocal" required>
+      <span style="color: aliceblue;">VS</span>
+    <input type="text" [(ngModel)]="matchSelected.resultvisit" required>
+    <input type="text" [(ngModel)]="matchSelected.visitante" required>
+  </div>
+  
 } @else {
   <p [ngStyle]="{color:'antiquewhite'}">
     No hay match seleccionado
@@ -21,7 +29,8 @@
 <!--Uso de ngClass(mirar css)-->
 @for(match of matches; track match; let index=$index) {
   <app-match-info 
-    [ngClass]="{'title': index>=0}" 
+    [ngClass]="{'title': index>=0}"
+    [index]="index"
     [local]="match.local"
     [visitante]="match.visitante"
     [date]="match.date"
@@ -38,3 +47,4 @@
 <!--ngSwitch-->
 <!--Directivas personalizadas-->
 
+<app-match-form (onSavedMatch)="addNewMatch($event)" ></app-match-form>

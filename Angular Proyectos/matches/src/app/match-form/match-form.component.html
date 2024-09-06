@@ -1,0 +1,63 @@
+<div class="container">
+<form #form="ngForm" (ngSubmit)="save(form)">
+
+  <!--LOCAL-->
+    <div class="mb-3">
+      <label for="local" class="form-label">Local</label>
+      <!--Hay  que poner siempre el atributo name para que funcione-->
+      <input name="local" type="text" class="form-control" id="local" 
+      required="true"
+      #local="ngModel"
+      [(ngModel)]="match.local">
+      @if (local.touched && local.invalid){
+        <span>Debe ingresar el campo local</span>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="local" class="form-label">Goles(Local)</label>
+      <input name="goleslocal" type="text" class="form-control" id="goleslocal" 
+      required="true"
+      #goleslocal="ngModel"
+      [(ngModel)]="match.resultlocal">
+    </div>
+
+
+    <div class="mb-3">
+      <label for="local" class="form-label">Visitante</label>
+      <input name="visitante" type="text" class="form-control" id="visitante" 
+      required="true"
+      #visitante="ngModel"
+      [(ngModel)]="match.visitante">
+      @if (local.touched && visitante.invalid){
+        <span>Debe ingresar el campo local</span>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="local" class="form-label">Goles(Visitante)</label>
+      <input name="golesvisitante"  type="text" class="form-control" id="golesvisitante" 
+      required="true"
+      #golesvisitante="ngModel"
+      [(ngModel)]="match.resultvisit">
+    </div>
+
+    <div class="mb-3">
+      <label for="dateMatch" class="form-label">Fecha</label>
+      <input name="dateMatch"  type="date" class="form-control" id="dateMatch" 
+      #dateMatch="ngModel"
+      [(ngModel)]="match.date">
+    </div>
+
+    
+    <div class="d-grid gap-2">
+      <!--Deshabilito el boton si el formulario es invalido, hasta qye deje de serlo-->
+      <button type="submit" class="btn btn-success"
+      [disabled]="form.invalid"  >
+      Success
+    </button>
+    </div>
+    
+</form>
+
+</div>

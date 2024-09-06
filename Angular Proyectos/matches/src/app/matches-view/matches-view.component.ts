@@ -3,11 +3,12 @@ import { MatchInfoComponent } from '../match-info/match-info.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Match } from '../interfaces/match';
+import { MatchFormComponent } from "../match-form/match-form.component";
 
 @Component({
   selector: 'app-matches-view',
   standalone: true,
-  imports: [MatchInfoComponent, CommonModule, FormsModule],
+  imports: [MatchInfoComponent, CommonModule, FormsModule, MatchFormComponent, MatchFormComponent],
   templateUrl: './matches-view.component.html',
   styleUrl: './matches-view.component.css'
 })
@@ -32,12 +33,17 @@ export class MatchesViewComponent implements OnInit {
   }
 
   //Para cambiar el texto en el parrafo superior del padre
-  matchSelected: string = '';
-  onSelected(match: string) {
-    this.matchSelected = match;
+  matchSelected?: Match;
+  onSelected(indexSelected: number) {
+    this.matchSelected = this.matches[indexSelected];
   }
 
   onDeleteLastMatch() {
     this.matches.pop(); //Elimina el ultimo elemento del array
+  }
+
+  //Recibe el evento que viene del componente form y lo pushea a la lista de partidos
+  addNewMatch(newMatch: Match) {
+    this.matches.push(newMatch); //Agrega un nuevo elemento al array
   }
 }
