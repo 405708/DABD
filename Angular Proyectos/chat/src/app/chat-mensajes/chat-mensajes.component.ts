@@ -12,7 +12,7 @@ export class ChatMensajesComponent {
   @Output() mensaje = new EventEmitter<Mensajes>()
 
   nuevoMensaje(name:string){
-    var textAreaValue = ""
+    let textAreaValue = ""
     if(name == "Martin"){
       textAreaValue = (document.getElementById('martinarea') as HTMLTextAreaElement).value;
       (document.getElementById('martinarea') as HTMLTextAreaElement).value = ''
@@ -24,7 +24,8 @@ export class ChatMensajesComponent {
     
     const mensajeNuevo : Mensajes = {
       nombre: name,
-      texto: textAreaValue
+      texto: textAreaValue,
+      fecha: new Date()
     };
 
     this.mensaje.emit(mensajeNuevo)

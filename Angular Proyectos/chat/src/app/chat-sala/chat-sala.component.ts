@@ -4,11 +4,12 @@ import { Mensajes } from '../../interfaces/mensajes';
 import { DirectPersDirective } from '../direct-pers.directive';
 import { CleanChatDirective } from '../clean-chat.directive';
 import { FirstMayusPipe } from '../first-mayus.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-chat-sala',
   standalone: true,
-  imports: [ChatMensajesComponent, DirectPersDirective, CleanChatDirective, FirstMayusPipe],
+  imports: [ChatMensajesComponent, DirectPersDirective, CleanChatDirective, FirstMayusPipe, CommonModule],
   templateUrl: './chat-sala.component.html',
   styleUrl: './chat-sala.component.css'
 })

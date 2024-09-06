@@ -1,6 +1,8 @@
 //Interfaz
 export interface Match{
-    name: string;
+    local: string;
+    visitante: string;
     date?: Date;
-    result?: string;
+    resultlocal?: number;
+    resultvisit?: number;
 }

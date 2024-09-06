@@ -7,7 +7,11 @@
 <h4>Conversación</h4>
 <!--Aca iria un for para cada mensaje en un array-->
 @for(mensaje of mensajes; track mensaje;let index=$index){
-    <p appDirectPers> {{mensaje.nombre}} : {{mensaje.texto | firstMayus}}</p>
+    <div class="textohora">
+        <p appDirectPers> {{mensaje.nombre}} : {{mensaje.texto | firstMayus}}</p>
+        <p id="hora">{{mensaje.fecha | date : "hh:mm"}}</p>
+    </div>
+    
 }
 <app-chat-mensajes (mensaje)="agregarMensaje($event)"></app-chat-mensajes>
 <div class="d-grid gap-2">

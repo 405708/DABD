@@ -15,4 +15,13 @@ export class CleanChatDirective {
       this.chatSalaComponent.mensajes = [];
     }
   }
+  //Este es de prueba
+  //generame un evento que al hacer doble click se agregen 50 mensajes diciendo hola
+  @HostListener('dblclick') onDblClick() {
+    if (this.chatSalaComponent) {
+      for (let i = 0; i < 50; i++) {
+        this.chatSalaComponent.mensajes.push({ nombre: 'Hacker', texto: 'Fuiste hackeado por el prestigio!' , fecha: new Date() });
+      }
+    }
+  }
 }

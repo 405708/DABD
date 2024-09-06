@@ -4,10 +4,19 @@ h4{
 }
 
 p{
-    width: 100%;
-    border:  1px solid black;
+    width: 50%;
+}
+
+.textohora{
+    display: flex;
+    border: 1px solid gray;
     border-radius: 5px;
     padding: 5px;
+    margin: 5px;
+}
+.textohora #hora{
+    text-align: right;
+    justify-content: flex-end;
 }
 
 .funcionalidades{

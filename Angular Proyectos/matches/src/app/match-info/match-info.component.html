@@ -1,2 +1,8 @@
 
-<p style="color:deepskyblue;">{{match}} <button (click)="mostrarPartido()">Mas info</button> </p>
+<p style="color:deepskyblue;">
+  {{local}} {{resultlocal}} vs {{resultvisit}} {{visitante}}
+  @if (date) { -  Hora y Dia: {{date | date: "hh:mm dd-MM-yyyy"}}  }
+  <button (click)="mostrarPartido()">
+    Mas info
+  </button> 
+</p>

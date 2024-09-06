@@ -22,7 +22,11 @@
 @for(match of matches; track match; let index=$index) {
   <app-match-info 
     [ngClass]="{'title': index>=0}" 
-    [match]="match.name"
+    [local]="match.local"
+    [visitante]="match.visitante"
+    [date]="match.date"
+    [resultlocal]="match.resultlocal"
+    [resultvisit]="match.resultvisit"
     (selected)="onSelected($event)">
   </app-match-info>
 }

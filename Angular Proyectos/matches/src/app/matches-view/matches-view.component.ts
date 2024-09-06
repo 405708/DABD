@@ -19,15 +19,15 @@ export class MatchesViewComponent implements OnInit {
   //Uso de OnInit para inicializar el array de Match(interface)
   ngOnInit(): void {
     this.matches = [
-      {name: 'Boca vs Riber', date: this.fecha},
-      {name: 'Barca vs Madrid', date: this.fecha},
-      {name: 'Independiente vs Racing', date: this.fecha},
-      {name: 'PSG vs Marsella', date: this.fecha},
-      {name: 'Milan vs Inter', date: this.fecha},
-      {name: 'Liverpool vs Manchester', date: this.fecha},
-      {name: 'Bayern vs Dortmund', date: this.fecha},
-      {name: 'Juventus vs Napoli', date: this.fecha},
-      {name: 'Chelsea vs Arsenal', date: this.fecha}
+      {local: 'Boca', visitante: 'Riber', date: this.fecha, resultlocal: 2, resultvisit: 1},
+      {local: 'Barca', visitante: 'Madrid', date: this.fecha, resultlocal: 3, resultvisit: 2},
+      {local: 'Independiente', visitante: 'Racing', date: this.fecha, resultlocal: 1, resultvisit: 1},
+      {local: 'PSG', visitante: 'Marsella', date: this.fecha, resultlocal: 2, resultvisit: 0},
+      {local: 'Milan', visitante: 'Inter', date: this.fecha, resultlocal: 1, resultvisit: 1},
+      {local: 'Liverpool', visitante: 'Manchester', date: this.fecha, resultlocal: 2, resultvisit: 2},
+      {local: 'Bayern', visitante: 'Dortmund', date: this.fecha, resultlocal: 3, resultvisit: 1},
+      {local: 'Juventus', visitante: 'Napoli', date: this.fecha, resultlocal: 2, resultvisit: 0},
+      {local: 'Chelsea', visitante: 'Arsenal', date: this.fecha, resultlocal: 1, resultvisit: 0},
     ];
   }
 
