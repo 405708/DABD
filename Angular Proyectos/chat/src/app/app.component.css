@@ -1,0 +1,23 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+  }
+
+.container{
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    margin: 10px;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.container p{
+    border: 1px solid rgb(209, 203, 203);
+    border-radius: 5px;
+    padding: 7px;
+}

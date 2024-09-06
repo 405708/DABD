@@ -1,0 +1,15 @@
+.container2{
+    display: flex;
+}
+.mensajes{
+    border: 1px solid rgb(209, 203, 203);
+    border-radius: 5px;
+    padding: 7px;
+    width: 50%;
+}
+
+.mensajes p{
+    border: 1px solid rgb(209, 203, 203);
+    border-radius: 5px;
+    padding: 7px;
+}

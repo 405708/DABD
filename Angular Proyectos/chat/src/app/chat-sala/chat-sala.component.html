@@ -1,0 +1,15 @@
+<div class="funcionalidades">
+    <h4>Funcionalidades</h4>
+    <h6>Fijar 📌 Doble Click</h6>
+    <h6>Ocultar 🗑 Click</h6>
+</div>
+
+<h4>Conversación</h4>
+<!--Aca iria un for para cada mensaje en un array-->
+@for(mensaje of mensajes; track mensaje;let index=$index){
+    <p appDirectPers> {{mensaje.nombre}} : {{mensaje.texto | firstMayus}}</p>
+}
+<app-chat-mensajes (mensaje)="agregarMensaje($event)"></app-chat-mensajes>
+<div class="d-grid gap-2">
+    <button type="button" class="btn btn-danger" appCleanChat>Limpiar Chat</button>
+</div>
