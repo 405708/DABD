@@ -1,0 +1,53 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="save(form)">
+    <div class="col-12">
+        <label for="inputNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="inputNombre" name="inputNombre"
+        required="true"
+        #inputNombre="ngModel"
+        [(ngModel)]="file.name">
+        @if(inputNombre.touched && inputNombre.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div>
+    <div class="col-12">
+        <label for="inputDate" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="inputDate" name="inputDate"
+        required="true"
+        #inputDate="ngModel"
+        [(ngModel)]="file.creation">
+        @if(inputDate.touched && inputDate.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div>
+    <div class="col-12">
+        <label for="inputType" class="form-label">Tipo Archivo</label>
+        <select id="selectType" name="selectType" class="form-select"
+        required="true"
+        #selectType="ngModel"
+        [(ngModel)]="file.type">
+        >
+            <option value="folder">Folder</option>
+            <option value="file">File</option>
+        </select>
+        @if(selectType.untouched && selectType.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+      </div>
+      <!--OPCIONALES-->
+      <!--
+        Carpeta: mostrar las carpetas existentes
+        Dueños: se puede cargar varios dueños que deben ser asociados a dicho archivo/carpeta.
+      -->
+        <!--Deshabilito el boton si el formulario es invalido, hasta qye deje de serlo-->
+        <div style="text-align: end;">
+            <button type="submit" class="btn btn-success"
+            [disabled]="form.invalid">
+                Guardar
+            </button>
+        </div>
+        
+    </form>
+    <button type="button" class="btn btn-secondary" (click)="volverAtras()">Volver</button>
+</div>
+
