@@ -1,0 +1,69 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="save(form)">
+    <div class="col-12">
+        <label for="inputNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" name="name"
+        required="true"
+        #name="ngModel"
+        [(ngModel)]="file.name">
+        @if(name.touched && name.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div>
+    <div class="col-12">
+        <label for="inputDate" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="creation" name="creation"
+        required="true"
+        #creation="ngModel"
+        [(ngModel)]="file.creation">
+        @if(creation.touched && creation.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div>
+    <div class="col-12">
+        <label for="inputType" class="form-label">Tipo Archivo</label>
+        <select id="type" name="type" class="form-select"
+        required="true"
+        #type="ngModel"
+        [(ngModel)]="file.type">
+        >
+            <option [ngValue]="FileType.FOLDER">Folder</option>
+            <option [ngValue]="FileType.FILE">File</option>
+        </select>
+        @if(type.untouched && type.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div>
+    <!-- <div class="col-12">
+        <label for="inputType" class="form-label">Dueño</label>
+        <select id="owners" name="owners" class="form-select"
+        required="true"
+        #owners="ngModel"
+        [(ngModel)]="ownerForm">
+        >  
+        <option *ngFor="let owner of ownersT" [ngValue]="owner">
+            {{owner.name}}
+        </option>
+            
+        </select>
+        @if(owners.untouched && owners.invalid){
+            <span style="color: red;">Rellene el campo</span>
+        }
+    </div> -->
+      <!--OPCIONALES-->
+      <!--
+        Carpeta: mostrar las carpetas existentes
+        Dueños: se puede cargar varios dueños que deben ser asociados a dicho archivo/carpeta.
+      -->
+        <!--Deshabilito el boton si el formulario es invalido, hasta qye deje de serlo-->
+        <div style="text-align: end;">
+            <button type="submit" class="btn btn-success"
+            [disabled]="form.invalid">
+                Guardar
+            </button>
+        </div>
+        
+    </form>
+    <button type="button" class="btn btn-secondary" (click)="volverAtras()">Volver</button>
+</div>
+
