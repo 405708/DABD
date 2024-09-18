@@ -1,5 +1,7 @@
 # DABD
 
+ng new name (project)
+
 ng g c name (component)
 
 ng g i name  (interface)
