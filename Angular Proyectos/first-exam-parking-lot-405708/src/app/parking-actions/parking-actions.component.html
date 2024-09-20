@@ -1,0 +1,17 @@
+
+
+<div class="container" *ngIf="parkingView">
+  <button type="button" class="btn btn-dark" (click)="newParking($event)">Nuevo</button>
+  <app-parking-view
+  [vehiculeToAdd]="vehiculesToAdd"
+    >
+
+  </app-parking-view>
+</div>
+
+<app-parking-slot-form *ngIf="!parkingView"
+  (backToView)="backView()"
+  (newVehicule)="addVehicule($event)"
+>
+
+</app-parking-slot-form>

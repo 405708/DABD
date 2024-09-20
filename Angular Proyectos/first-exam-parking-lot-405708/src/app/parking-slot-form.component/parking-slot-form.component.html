@@ -1,0 +1,88 @@
+<!-- MORE INFORMATION ABOUT THIS FORM HERE: https://getbootstrap.com/docs/5.3/forms/validation/ -->
+<form class="row g-3 was-validated" novalidate #form="ngForm" (ngSubmit)="save(form)">
+  <div class="col-md-4">
+    <label for="inputModel" class="form-label">Modelo</label>
+    <input type="text" class="form-control" id="inputModel"
+    name="model"
+    #model="ngModel"
+    required="true"
+    [(ngModel)]="vehiculeToAdd.model"
+    [ngClass]="{
+      'is-invalid': model.invalid && (model.dirty || model.touched),
+      'is-valid': model.valid && (model.dirty || model.touched)
+   }">
+   @if (model.invalid && (model.dirty || model.touched)){
+      <div class="form-text text-danger"></div>                
+    }
+    @if (model.valid && (model.dirty || model.touched)){
+      <div class="form-text text-success"></div>                
+    }
+  </div>
+  <div class="col-md-4">
+    <label for="inputDomain" class="form-label">Dominio</label>
+    <input type="text" class="form-control" id="inputDomain"
+    name="domain"
+    #domain="ngModel"
+    required="true"
+    [(ngModel)]="vehiculeToAdd.domain"
+    [ngClass]="{
+      'is-invalid': domain.invalid && (domain.dirty || domain.touched),
+      'is-valid': domain.valid && (domain.dirty || domain.touched)}"
+     />
+      @if (domain.invalid && (domain.dirty || domain.touched)){
+        <div class="form-text text-danger"></div>
+      }
+  </div>
+  <div class="col-md-6">
+    <label for="checkInInputTime" class="form-label">Ingreso</label>
+    <input type="date" class="form-control" id="checkInInputTime"
+    name="horaIngreso"
+    #horaIngreso="ngModel"
+    required="true"
+    [(ngModel)]="vehiculeToAdd.horaIngreso"
+     /> 
+  </div>
+  <div class="col-md-3">
+    <label for="brandSelect" class="form-label">Marca</label>
+    <select class="form-select" id="brandSelect"
+    name="brand"
+    #brand="ngModel"
+    required
+    [(ngModel)]="vehiculeToAdd.brand">
+    <option value=""> Seleccione</option>
+    @for(brand of brands; track brand; let index=$index){
+      <option [ngValue]="brand">{{brand.name}}</option>
+    }
+    </select>
+    <div class="invalid-feedback">Mensaje validacion.</div>
+  </div>
+  <div class="col-md-3">
+    <label for="vehiculeTypeTypeSelect" class="form-label">Tipo Vehiculo</label>
+    <select class="form-select" id="vehicleTypeSelect"
+    name="type"
+    #type="ngModel"
+    required
+    [(ngModel)]="vehiculeToAdd.type"
+    >
+      <option value="1">Motocicleta</option>
+      <option value="2">Automovil</option>
+      <option value="3">Camioneta</option>
+    </select>
+    <div class="invalid-feedback">Mensaje validacion.</div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="newDomainCheck"
+      name="newDomain"
+      #newDomain="ngModel"
+      [(ngModel)]="vehiculeToAdd.newDomain" />
+      <label class="form-check-label" for="newDomainCheck">
+        Nuevo dominio?
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-secondary" type="submit" (click)="volverAView()">Cancelar</button>
+    <button class="btn btn-primary" type="submit">Registrar ingreso</button>
+  </div>
+</form>

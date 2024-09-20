@@ -1,0 +1,17 @@
+<div *ngFor="let slot of parkingSlot; let index = index; trackBy: trackByFn">
+  <p class="col-md-3"> 
+  <span *ngFor="let i of [].constructor(slot.totalPlaces)">
+    @for(vehicule of slot.vehicules; track index; let index=$index){
+      <!--No se porque no se muestra segun el tipo, eso me trajo varios problemas-->
+      <span *ngIf="vehicule.VehiculeType == 2"><i class="bi bi-car-front"></i></span>
+      <span *ngIf="vehicule.VehiculeType == 3"><i class="bi bi-truck-front"></i></span>
+      <span *ngIf="vehicule.VehiculeType == 1"><i class="bi bi-bicycle"></i></span> 
+    }
+    @if(slot.empty){
+      <i class="bi bi-cursor"></i>
+    }
+      
+    <span></span>
+  </span>
+  </p>
+</div>
