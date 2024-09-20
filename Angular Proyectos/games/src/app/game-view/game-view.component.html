@@ -1,0 +1,32 @@
+<div class="container">
+    <table class="table" appViewf>
+        <thead>
+          <tr>
+            <th scope="col" class="col-1">#</th>
+            <th scope="col" class="col-2">Nombre</th>
+            <th scope="col" class="col-2">Descripcion</th>
+            <th scope="col" class="col-6">Creadores</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!--Hacer un ngFor por cada file-->
+            @for(game of games; track game; let index=$index){
+              <tr>
+                <th scope="row">{{game.id}}</th>
+                <td>
+                  {{game.name}}
+                </td>
+                <td><button type="button" class="btn btn-info" (click)="verMas(game.description)">Ver mas</button>
+                <td>
+                  @for(creator of game.creators; track creator; let index=$index){
+                    <img src={{creator.iconUrl}} style="width: 5%; border-radius: 50%;">
+                  }
+                </td>
+              </tr>
+            }
+        </tbody>
+      </table>
+      @if (desc) {<app-game-desc [descToShow]="desc"></app-game-desc>}
+      
+</div>
+

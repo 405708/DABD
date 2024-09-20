@@ -1,0 +1,8 @@
+.container{
+    background-color: #152733;
+}
+
+.container table th, td{
+    background-color: #152733;
+    color: antiquewhite;
+}

@@ -1,0 +1,74 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="save(form)" class="row g-3 needs-validation" novalidate>
+        <h2>Alta Videojuegos</h2>
+        <h5>Formulario Inscripción de videojuegos</h5>
+        <div class="col-10">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="game.name"
+                required
+                [ngClass]="{
+                    'is-invalid': name.invalid && (name.dirty || name.touched),
+                    'is-valid': name.valid && (name.dirty || name.touched)
+                 }">
+                 @if (name.invalid && (name.dirty || name.touched)){
+                    <div class="form-text text-danger"></div>                
+                  }
+                  @if (name.valid && (name.dirty || name.touched)){
+                    <div class="form-text text-success"></div>                
+                  } 
+          </div>
+
+          <div class="col-10">
+            <label for="validationServer02" class="form-label">Descripcion</label>
+            <input type="text" class="form-control"
+                name="description"
+                #description="ngModel"
+                [(ngModel)]="game.description"
+                required="true"
+                [ngClass]="{
+                    'is-invalid': description.invalid && (description.dirty || description.touched),
+                    'is-valid': description.valid && (description.dirty || description.touched)
+                 }">
+                 @if (description.invalid && (description.dirty || description.touched)){
+                    <div class="form-text text-danger"></div>                
+                  }
+                  @if (description.valid && (description.dirty || description.touched)){
+                    <div class="form-text text-success"></div>                
+                  } 
+          </div>
+
+          <div class="col-10">
+            <label for="validationServer04" class="form-label">Creador</label>
+            <select class="form-select" id="creator" 
+                name="creators"
+                #creators="ngModel"
+                [(ngModel)]="creatorNew"
+                required="true"
+                [ngClass]="{
+                    'is-valid': creators.valid
+                  }">
+              <option selected disabled value="">Seleccione...</option>
+              @for (creator of creatorsList; track creator; let index=$index) {
+                <option [ngValue]="creator">{{creator.name}}</option>
+              }
+            </select>
+            @if (creators.valid && (creators.touched || creators.dirty)){
+                <div class="form-text text-success"></div>                
+              }
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit"         [disabled]="form.invalid">Registrar</button>
+          </div>
+
+    </form>
+    <button type="button" class="btn btn-secondary" 
+        (click)="volverAView()">
+        Volver
+    </button>
+</div>
+
+

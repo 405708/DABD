@@ -1,0 +1,16 @@
+<!--Hacer select-->
+<div *ngIf="gameView">
+    <h2>Lista de juegos</h2>
+    <button type="button" class="btn btn-dark" style="margin-left: 80%;" (click)="nuevoGame($event)">Nuevo</button>
+    <app-game-view
+    [gamesToAdd]="gameToAdd"
+    >
+    </app-game-view>
+  </div>
+
+  <div>
+    <app-game-form *ngIf="!gameView" 
+    (volverAtras)="volver()"
+    (onSavedFile)="addNewGame($event)"
+    ></app-game-form>
+  </div>

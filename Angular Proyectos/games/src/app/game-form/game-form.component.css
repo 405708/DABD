@@ -1,0 +1,15 @@
+.container{
+    justify-content: center;
+    align-items: center;
+    background-color: #152733;
+    color: antiquewhite;
+    margin-top: 100px;
+    padding: 10px;
+}
+
+.container form{
+    border: 2px solid antiquewhite;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
