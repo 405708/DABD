@@ -1,8 +1,7 @@
-<div *ngFor="let slot of parkingSlot; let index = index; trackBy: trackByFn">
+<!--<div *ngFor="let slot of parkingSlot; let index = index; trackBy: trackByFn">
   <p class="col-md-3"> 
   <span *ngFor="let i of [].constructor(slot.totalPlaces)">
     @for(vehicule of slot.vehicules; track index; let index=$index){
-      <!--No se porque no se muestra segun el tipo, eso me trajo varios problemas-->
       <span *ngIf="vehicule.VehiculeType == 2"><i class="bi bi-car-front"></i></span>
       <span *ngIf="vehicule.VehiculeType == 3"><i class="bi bi-truck-front"></i></span>
       <span *ngIf="vehicule.VehiculeType == 1"><i class="bi bi-bicycle"></i></span> 
@@ -15,3 +14,26 @@
   </span>
   </p>
 </div>
+-->
+
+<div class="container">
+  <div>
+      <div class="row" *ngFor="let row of parkingSlot">
+          <div class="col-2 mb-3" *ngFor="let slot of row">
+              <div class="card text-center" [ngClass]="getSlotClass(slot)">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ slot.availablePlaces }}/{{ slot.totalPlaces }}</h5>
+                      <div class="vehicles d-flex justify-content-center flex-wrap">
+                          <span *ngFor="let vehicle of slot.vehicules" [ngClass]="getVehicleClass(vehicle)"
+                              class="m-1">
+                              <i [ngClass]="getVehicleIcon(vehicle)"></i>
+                          </span>
+                          <span *ngFor="let i of createArray(slot.availablePlaces)" class="m-1">
+                              &#8226;
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
