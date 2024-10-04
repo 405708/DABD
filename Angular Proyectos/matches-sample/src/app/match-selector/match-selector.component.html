@@ -1,0 +1,10 @@
+@if (matchSelected) {
+  <p [ngStyle]="{
+      color: 'red'
+  }">
+      Seleccionado: {{matchSelected | uppercase }}
+  </p>
+} @else {
+  <!-- BLOQUE ELSE -->
+   <span>No Seleccionado</span>
+}
