@@ -1,0 +1,10 @@
+@if (matchSelected) {
+    <p [ngStyle]="{
+        color: 'red'
+    }">
+        Seleccionado: {{matchSelected | uppercase }}
+    </p>
+} @else {
+    <span>No seleccionado</span>
+    <button (click)="subscribeToMatchSelected()">Escuchar cambios</button>
+}

@@ -1,0 +1,90 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+    <div class="mb-3">
+        <label for="local" class="form-label">Local</label>
+        <input type="text" class="form-control" id="local" formControlName="local">
+        @if(form.controls["local"]; as local){
+          @if (local.touched && local.invalid) {
+            <span>Debe ingresar el campo local</span>
+            }
+        }
+        
+    </div>
+    <div class="mb-3">
+        <label for="visitor" class="form-label">Visitante</label>
+        <input type="text" class="form-control" id="visitor" formControlName="visitor">
+        @if(form.controls["visitor"]; as visitor){
+          @if (visitor.invalid && visitor.touched) {
+            <span>Debe ingresar el campo visitante</span>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label for="localScore" class="form-label">Goles Local</label>
+        <input type="number" class="form-control" id="localScore" formControlName="localScore">
+        @if(form.controls["localScore"]; as localScore){
+          @if (localScore.invalid) {
+            @if (localScore.errors?.['required']) {
+              <span>El campo es requerido</span>
+            }
+          }
+        }
+        
+      </div>
+      <div class="mb-3">
+        <label for="visitorScore" class="form-label">Goles Visitante</label>
+        <input type="number" class="form-control" id="visitorScore" formControlName="visitorScore">
+        @if(form.controls["visitorScore"]; as visitorScore){
+          @if (visitorScore.invalid && visitorScore.touched) {
+            @if (visitorScore.getError('required')) {
+              <span>El campo gol visitante es requerido</span>
+            }
+            @if (visitorScore.getError('min')) {
+              <span>El campo gol visitante debe ser mayor a 
+                {{visitorScore.getError('min').min}} 
+                pero el valor actual es
+                {{visitorScore.getError('min').actual}} 
+              </span>
+            }
+          }
+        }
+        
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Fecha</label>
+        <input name="date" type="date" class="form-control" id="date" 
+            [min]="today | date:'yyyy-MM-dd'">
+      </div>
+
+      <!--Uso de form Array-->
+
+      <div>
+        <h4>Eventos
+        </h4>
+        <button type="button" (click)="onNewEvent()">+</button>
+        <div class="row" formArrayName="events">
+        @for(item of events.controls; track $index){
+          <div class="col-6">
+            <div class="mb-3" [formGroupName]="$index">
+              <h5>Evento {{$index + 1}}</h5>
+              <label for="minutes" class="form-label">Minutos</label>
+              <input type="number" class="form-control" id="minutes" formControlName="minute">
+
+              <label for="seconds" class="form-label">Segundos</label>
+              <input type="number" class="form-control" id="seconds" formControlName="seconds">
+              
+              <label for="description" class="form-label">Descripcion</label>
+              <input type="text" class="form-control" id="description" formControlName="description">
+
+              <button type="button" (click)="onDeleteEvent($index)">-</button>
+            </div>
+          </div>
+        }
+      </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">
+        Guardar
+      </button>
+</form>
+
+<p>{{form.value | json}}</p>

@@ -1,0 +1,12 @@
+<input type="date" [formControl]="dateControl">
+@if(dateControl.invalid){
+  @if(dateControl.getError('required')){
+    <p style="color: red;">La fecha es requerida</p>
+  }
+  @if(dateControl.getError('greaterThanToday')){
+    <p style="color: red;">La fecha debe ser menoy a hoy</p>
+  }
+}
+<p style="color: green; font-size: 50px;">VALOR FECHA: {{dateControl.value | date: 'dd/MM/yyyy'}}</p>
+<p style="color: red; font-size: 50px;">ERROR: {{dateControl.errors | json}}</p>
+
