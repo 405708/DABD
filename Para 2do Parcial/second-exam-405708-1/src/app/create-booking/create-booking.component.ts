@@ -18,10 +18,7 @@ export class CreateBookingComponent implements OnInit{
 
   private bookingService: BookingsService = inject(BookingsService);
   private router: Router = inject(Router);
-  subtotal: number = 0;
-  total: number = 0;
-  descuentoValue: number=0;
-  descuento: boolean = false;
+
 
   reactiveForm:FormGroup = new FormGroup({
     companyName: new FormControl("", [Validators.required, Validators.minLength(5)]),
@@ -37,6 +34,9 @@ export class CreateBookingComponent implements OnInit{
 
   ngOnInit(): void {
     //Ver value
+    this.reactiveForm.get('totalPeople')?.valueChanges.subscribe(() => {
+      this.calculateTotal();
+    });
 
     this.reactiveForm.get('eventDate')?.setAsyncValidators(this.dateEventValidator());  
 
@@ -81,28 +81,45 @@ export class CreateBookingComponent implements OnInit{
   
   }
 
-  calculateTotal(): void{
+  subtotal: number = 0;
+  subtotals: number[] = []; // Array para almacenar subtotales individuales
+  total: number = 0;
+  descuentoValue: number=0;
+  descuento: boolean = false;
 
-    this.services.controls.forEach(control =>{
+  calculateTotal(): void {
+    this.subtotal = 0;
+    this.total = 0;
+  
+    this.services.controls.forEach((control, index) => {
       const quantity = control.get('quantity')?.value || 0;
       const pricePerPerson = control.get('pricePerPerson')?.value || 0;
-      this.subtotal += quantity * pricePerPerson
-      if(quantity > 100){
-        this.descuento = true;
-      }
-      else{this.descuento = false}
-    })
-    if(this.descuento){
-      this.total = this.descuento ? this.subtotal * 0.85 : this.subtotal;
-      this.descuentoValue = this.descuento ? this.subtotal * 0.15 : 0;
-    }
-    else{
-      this.descuentoValue = 0
+      
+      // Calcular y guardar el subtotal de cada servicio
+      const serviceSubtotal = quantity * pricePerPerson;
+      this.subtotals[index] = serviceSubtotal;
+  
+      // Sumar al subtotal general
+      this.subtotal += serviceSubtotal;
+    });
+  
+
+    const totalPeople = this.reactiveForm.get('totalPeople')?.value || 0;
+    this.descuento = totalPeople > 100; // Por ejemplo, si `totalPeople` > 100
+  
+    if (this.descuento) {
+      this.descuentoValue = this.subtotal * 0.15;
+      this.total = this.subtotal - this.descuentoValue;
+    } else {
+      this.descuentoValue = 0;
+      this.total = this.subtotal;
     }
   }
 
   onDeleteEvent(index: number) {
-    this.services.removeAt(index);
+    this.services.removeAt(index);        // Elimina el elemento del FormArray 'services'
+    this.subtotals.splice(index, 1);      // Elimina el subtotal correspondiente del array 'subtotals'
+    this.calculateTotal();                // Recalcula el total después de eliminar el servicio
   }
 
   selectServices:any[] = [];

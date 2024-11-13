@@ -1,9 +1,10 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Booking, BookingService, Venue } from '../interfaces';
 import { BookingsService } from '../bookings.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-bookings-list',
@@ -14,7 +15,7 @@ import { BookingsService } from '../bookings.service';
   imports: [CurrencyPipe, ReactiveFormsModule, DatePipe],
   standalone: true
 })
-export class BookingsListComponent  {
+export class BookingsListComponent implements OnInit, OnDestroy {
 
   private bookingService: BookingsService = inject(BookingsService);
   private readonly router: Router = inject(Router);
@@ -32,8 +33,13 @@ export class BookingsListComponent  {
     this.filterOrders();
   }
 
+  subscriptions = new Subscription();
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   getOrders() {
-    this.bookingService.getBookings().subscribe({
+    const getAllSubscription = this.bookingService.getBookings().subscribe({
       next: (response) => {
         this.allBookings = response;
         this.bookings = [...this.allBookings];
@@ -42,7 +48,8 @@ export class BookingsListComponent  {
       error: (err) => {
         console.error('Error:', err);
       }
-    });
+    })
+    this.subscriptions.add(getAllSubscription);
   }
 
 
@@ -61,7 +68,7 @@ export class BookingsListComponent  {
   }
 
   getVenues() {
-      this.bookingService.getVenues().subscribe({
+    const getAllSubscription = this.bookingService.getVenues().subscribe({
         next: (response) => {
           this.venues = response
         },
@@ -69,6 +76,7 @@ export class BookingsListComponent  {
           console.error('Error:', err);
         }
       });
+      this.subscriptions.add(getAllSubscription)
   }
 
   getVenueNames(bookings: Booking[]) {
