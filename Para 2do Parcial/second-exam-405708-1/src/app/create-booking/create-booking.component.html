@@ -46,6 +46,9 @@
         @if(email.errors?.['email']){
         <span class="invalid-feedback">El formato no es correcto</span>
         }
+        @if(email.errors?.['emailLimit']){
+          <span class="invalid-feedback">El email ya existe</span>
+      }
       }
     }
         </div>
@@ -139,9 +142,16 @@
     <div class="card mb-4">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h3 class="h5 mb-0">Servicios Adicionales</h3>
-        <button type="button" class="btn btn-light btn-sm" (click)="onNewEvent()">
-          + Agregar Servicio
-        </button>
+        <!--Limitar cantidad a los servicios existentes-->
+        @if(serviceQuantity < 5){
+          <button type="button" class="btn btn-light btn-sm" (click)="onNewEvent()">
+            + Agregar Servicio
+          </button>
+        }
+        @else {
+          <span>Maximo alcanzado</span>
+        }
+
       </div>
       <div class="card-body" formArrayName="services">
         @for (item of services.controls; track $index) {
@@ -212,6 +222,11 @@
               Subtotal del servicio: ${{subtotals[$index] || 0}}
             </small>
           </div>
+        </div>
+      }
+      @if(reactiveForm.hasError('duplicateService', 'services')){
+        <div class="text-danger">
+          El servicio ya fue seleccionado
         </div>
       }
       </div>

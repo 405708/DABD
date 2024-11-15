@@ -18,6 +18,7 @@ export class CreateBookingComponent implements OnInit{
 
   private bookingService: BookingsService = inject(BookingsService);
   private router: Router = inject(Router);
+  serviceQuantity: number=0;
 
 
   reactiveForm:FormGroup = new FormGroup({
@@ -29,7 +30,7 @@ export class CreateBookingComponent implements OnInit{
     startTime: new FormControl("", [Validators.required]),
     endTime: new FormControl("", [Validators.required]),
     totalPeople: new FormControl("", [Validators.required]),
-    services: new FormArray([],[Validators.required])
+    services: new FormArray([],[Validators.required,this.uniqueServiceValidator,Validators.maxLength(4)])
   })
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class CreateBookingComponent implements OnInit{
     });
 
     this.reactiveForm.get('eventDate')?.setAsyncValidators(this.dateEventValidator());  
+    this.reactiveForm.get('companyEmail')?.setAsyncValidators(this.bookingLimitEmailValidator()); 
 
     this.chargeSelectVenues();
   }
@@ -68,6 +70,7 @@ export class CreateBookingComponent implements OnInit{
       this.calculateTotal();
     });
 
+    this.serviceQuantity = this.serviceQuantity + 1;
     formArray.push(eventForm);
     this.chargeSelect()
   }
@@ -119,6 +122,7 @@ export class CreateBookingComponent implements OnInit{
   onDeleteEvent(index: number) {
     this.services.removeAt(index);        // Elimina el elemento del FormArray 'services'
     this.subtotals.splice(index, 1);      // Elimina el subtotal correspondiente del array 'subtotals'
+    this.serviceQuantity = this.serviceQuantity - 1;
     this.calculateTotal();                // Recalcula el total después de eliminar el servicio
   }
 
@@ -156,7 +160,7 @@ export class CreateBookingComponent implements OnInit{
     this.bookingService.postBooking(booking).subscribe({
       next: (response) => {
         console.log('Orden enviada correctamente', response);
-        this.router.navigate(['/bookings']);
+        this.router.navigate(['/booking/list']);
       },
       error: (error) => {
         console.error('Error al enviar la orden', error);
@@ -203,6 +207,30 @@ export class CreateBookingComponent implements OnInit{
         })
       )
     }
+  }
+  //Async Validator
+  bookingLimitEmailValidator(): AsyncValidatorFn | null{
+    return (control: AbstractControl) : Observable<ValidationErrors | null> => {
+      return this.bookingService.getBookingByCompanyEmail(control.value).pipe(
+        map(data =>{
+          return data.length > 0 ? {emailLimit : true} : null
+        }),
+        catchError(() => {
+          alert("error en la api")
+          return of({apiCaida : true})
+        })
+      )
+    }
+  }
+
+  //Validator
+  uniqueServiceValidator(services: FormArray): ValidationErrors | null{
+    const selectedServiceId = services.controls.map(control =>
+      control.get('serviceId')?.value as Number);
+    const hasDuplicates = selectedServiceId.some((id, index) => 
+      selectedServiceId.indexOf(id) !==index
+    );
+    return hasDuplicates ? { duplicateService:true } : null
   }
 
 }

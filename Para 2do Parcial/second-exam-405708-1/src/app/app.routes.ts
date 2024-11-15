@@ -4,11 +4,17 @@ import { CreateBookingComponent } from './create-booking/create-booking.componen
 
 export const routes: Routes = [
   {
-    path: 'bookings', component: BookingsListComponent
+    path: '', redirectTo: 'booking', pathMatch: 'full'
   },
   {
-    path: 'create-booking', component: CreateBookingComponent
+    path: 'booking', 
+    loadChildren: () => import('../booking.routes').then(r=> r.BOOKING_ROUTES)
   }
+  //Componente Update Booking
+  //Cargar datos segun el id, llamando a la json-db
+  //Validaciones Async nuevas
+  //Validacion personalizada (No registrar misma empresa)
+  //Validacion personalizada (No se puede repetir servicio)
 
 ];
 

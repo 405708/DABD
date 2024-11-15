@@ -82,151 +82,69 @@
   ],
   "bookings": [
     {
-      "id": "b1",
-      "bookingCode": "TEC2810A123",
-      "companyName": "Tech Solutions Inc",
-      "companyEmail": "events@techsolutions.com",
-      "contactPhone": "+1234567890",
-      "venueId": "v1",
-      "eventDate": "2024-10-28",
-      "startTime": "14:00",
-      "endTime": "20:00",
-      "totalPeople": 150,
-      "services": [
-        {
-          "serviceId": "s1",
-          "quantity": 150,
-          "pricePerPerson": 45,
-          "startTime": "15:00",
-          "endTime": "17:00"
-        },
-        {
-          "serviceId": "s2",
-          "quantity": 150,
-          "pricePerPerson": 15,
-          "startTime": "17:30",
-          "endTime": "18:30"
-        }
-      ],
-      "totalAmount": 9000,
-      "status": "confirmed",
-      "createdAt": "2024-10-15T10:30:00Z"
-    },
-    {
-      "id": "b2",
-      "bookingCode": "INN2910B456",
-      "companyName": "Innovate Corp",
-      "companyEmail": "meetings@innovate.com",
-      "contactPhone": "+1987654321",
+      "companyName": "EDITADO",
+      "companyEmail": "EDITADO@EDITADO",
+      "contactPhone": "EDITADO",
       "venueId": "v2",
-      "eventDate": "2024-10-29",
-      "startTime": "09:00",
-      "endTime": "15:00",
-      "totalPeople": 80,
-      "services": [
-        {
-          "serviceId": "s2",
-          "quantity": 80,
-          "pricePerPerson": 15,
-          "startTime": "10:30",
-          "endTime": "11:30"
-        },
-        {
-          "serviceId": "s3",
-          "quantity": 80,
-          "pricePerPerson": 10,
-          "startTime": "09:00",
-          "endTime": "15:00"
-        }
-      ],
-      "totalAmount": 2000,
-      "status": "pending",
-      "createdAt": "2024-10-20T14:15:00Z"
-    },
-    {
-      "id": "b3",
-      "bookingCode": "GLO3010C789",
-      "companyName": "Global Enterprises",
-      "companyEmail": "events@global.com",
-      "contactPhone": "+1122334455",
-      "venueId": "v3",
-      "eventDate": "2024-10-30",
-      "startTime": "18:00",
-      "endTime": "23:00",
-      "totalPeople": 300,
-      "services": [
-        {
-          "serviceId": "s1",
-          "quantity": 300,
-          "pricePerPerson": 45,
-          "startTime": "19:00",
-          "endTime": "21:00"
-        },
-        {
-          "serviceId": "s4",
-          "quantity": 300,
-          "pricePerPerson": 8,
-          "startTime": "18:00",
-          "endTime": "23:00"
-        },
-        {
-          "serviceId": "s5",
-          "quantity": 300,
-          "pricePerPerson": 5,
-          "startTime": "18:00",
-          "endTime": "23:00"
-        }
-      ],
-      "totalAmount": 17400,
-      "status": "confirmed",
-      "createdAt": "2024-10-01T09:45:00Z"
-    },
-    {
-      "id": "b4",
-      "bookingCode": "DIG3110D012",
-      "companyName": "Digital Solutions",
-      "companyEmail": "contact@digital.com",
-      "contactPhone": "+1567890123",
-      "venueId": "v1",
-      "eventDate": "2024-10-31",
-      "startTime": "10:00",
-      "endTime": "16:00",
+      "eventDate": "1212-12-12",
+      "startTime": "12:12",
+      "endTime": "12:12",
       "totalPeople": 100,
-      "services": [
-        {
-          "serviceId": "s2",
-          "quantity": 100,
-          "pricePerPerson": 15,
-          "startTime": "11:30",
-          "endTime": "12:30"
-        }
-      ],
-      "totalAmount": 1500,
-      "status": "cancelled",
-      "createdAt": "2024-10-10T16:20:00Z"
+      "services": [],
+      "id": "b1",
+      "status": "confirmed"
     },
     {
-      "id": "e7ad",
-      "companyName": "testtest",
-      "companyEmail": "test@gmail.com",
-      "contactPhone": "03517728987",
+      "companyName": "this.indexToUpdate@a",
+      "companyEmail": "this.indexToUpdate@a",
+      "contactPhone": "this.indexToUpdate@a",
       "venueId": "v1",
-      "eventDate": "2024-10-28",
-      "startTime": "14:04",
-      "endTime": "14:06",
-      "totalPeople": 50,
-      "services": [
-        {
-          "serviceId": "s1",
-          "quantity": 50,
-          "startTime": "14:04",
-          "endTime": "15:05"
-        }
-      ],
-      "bookingCode": "TES28104724",
-      "totalAmount": 2250,
-      "status": "pending",
-      "createdAt": "2024-10-28T17:05:07.744Z"
+      "eventDate": "0121-12-12",
+      "startTime": "12:12",
+      "endTime": "12:12",
+      "totalPeople": 12,
+      "services": [],
+      "id": "b2",
+      "status": "confirmed"
+    },
+    {
+      "companyName": "bookingCode@a",
+      "companyEmail": "bookingCode@a",
+      "contactPhone": "bookingCode@a",
+      "venueId": "v2",
+      "eventDate": "0121-12-12",
+      "startTime": "12:12",
+      "endTime": "12:12",
+      "totalPeople": 12112,
+      "services": [],
+      "id": "b3",
+      "status": "confirmed"
+    },
+    {
+      "companyName": "TA@BK",
+      "companyEmail": "TA@BK",
+      "contactPhone": "TA@BK",
+      "venueId": "v3",
+      "eventDate": "1212-12-12",
+      "startTime": "12:12",
+      "endTime": "11:12",
+      "totalPeople": 1212,
+      "services": [],
+      "id": "b4",
+      "status": "confirmed"
+    },
+    {
+      "companyName": "getBookings@a",
+      "companyEmail": "getBookings@a",
+      "contactPhone": "getBookings@a",
+      "venueId": "v2",
+      "eventDate": "0121-12-12",
+      "startTime": "12:12",
+      "endTime": "11:12",
+      "totalPeople": 121,
+      "services": [],
+      "id": "e7ad",
+      "status": "confirmed"
     },
     {
       "id": "54ac",
@@ -297,6 +215,43 @@
       "status": "pending",
       "createdAt": "2024-11-13T20:59:01.456Z",
       "totalAmount": 1665
+    },
+    {
+      "id": "54ca",
+      "companyName": "afdadf",
+      "companyEmail": "a@a",
+      "contactPhone": "a11",
+      "venueId": "v1",
+      "eventDate": "2024-10-31",
+      "startTime": "12:12",
+      "endTime": "12:12",
+      "totalPeople": 1212,
+      "services": [],
+      "status": "confirmed"
+    },
+    {
+      "id": "4e5f",
+      "companyName": "Empresaaaa",
+      "companyEmail": "evet@eve",
+      "contactPhone": "12131313",
+      "venueId": "v2",
+      "eventDate": "2024-10-31",
+      "startTime": "12:01",
+      "endTime": "01:12",
+      "totalPeople": 1212,
+      "services": [
+        {
+          "serviceId": "s2",
+          "quantity": 100,
+          "pricePerPerson": 15,
+          "startTime": "12:12",
+          "endTime": "15:11"
+        }
+      ],
+      "bookingCode": "6UYW8DUNUP",
+      "status": "pending",
+      "createdAt": "2024-11-15T06:05:01.278Z",
+      "totalAmount": 1500
     }
   ],
   "availability": [

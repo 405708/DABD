@@ -1,58 +1,73 @@
 <div class="container mt-4">
-    <h2>Reservas</h2>
-    
-    <!-- Filtros -->
-
+  <!-- Lista de reservas -->
+  @if (showList) {
+    <div>
+      <h2>Reservas</h2>
+      <button class="btn btn-info" (click)="changeRoles('ADMIN')">Dar Permisos</button>
+      <button class="btn btn-info" (click)="changeRoles('DEVELOPER')">Quitar Permisos</button>
+      
+      <!-- Filtros -->
       <div class="col-md-6">
         <label class="form-label">Buscar</label>
         <input type="text" 
           placeholder="Search by company name or code..." 
-          class="form-control" style="margin: 10px;" 
+          class="form-control" 
+          style="margin: 10px;" 
           id="search"
           [formControl]="searchTerm">
-    
-   
-        </div>
+      </div>
 
-    <!-- Tabla de Reservas -->
-    <div class="table-responsive" >
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Empresa</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Personas</th>
-            <th>Total</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for(booking of bookings; track $index){
-            <tr >
-              <td>
-                <span class="badge bg-secondary">{{booking?.bookingCode}}</span>
-              </td>
-              <td>{{booking?.companyName}}</td>
-              <td>{{ booking?.venueName }}</td>
-              <td>
-                {{booking?.eventDate | date:'dd/MM/yyyy'}}
-                <small class="d-block text-muted">
-                  {{booking?.startTime}} - {{booking?.endTime}}
-                </small>
-              </td>
-              <td>{{booking?.totalPeople}}</td>
-              <td>{{booking?.totalAmount | currency}}</td>
-              <td>
-                <span [class]="getStatusBadgeClass(booking?.status)">
-                {{booking?.status}}
-                </span>
-              </td>
+      <!-- Tabla de Reservas -->
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Empresa</th>
+              <th>Lugar</th>
+              <th>Fecha</th>
+              <th>Personas</th>
+              <th>Total</th>
+              <th>Estado</th>
+              <th>Acciones</th>
             </tr>
-          }
-        </tbody>
-      </table>
-
-
-  </div>
+          </thead>
+          <tbody>
+            @for(booking of bookings; track $index){
+              <tr>
+                <td>
+                  <span class="badge bg-secondary">{{booking?.bookingCode}}</span>
+                </td>
+                <td>{{booking?.companyName}}</td>
+                <td>{{ booking?.venueName }}</td>
+                <td>
+                  {{booking?.eventDate | date:'dd/MM/yyyy'}}
+                  <small class="d-block text-muted">
+                    {{booking?.startTime}} - {{booking?.endTime}}
+                  </small>
+                </td>
+                <td>{{booking?.totalPeople}}</td>
+                <td>{{booking?.totalAmount | currency}}</td>
+                <td>
+                  <span [class]="getStatusBadgeClass(booking?.status)">
+                    {{booking?.status}}
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-info" (click)="toEdit(booking.id)">
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  } @else {
+    <app-booking-update
+      [indexToUpdate]="selectedId"
+      (updateConfirmed)="handleUpdate($event)">
+    </app-booking-update>
+  }
+</div>

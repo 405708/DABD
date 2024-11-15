@@ -22,6 +22,20 @@ export class BookingsService {
     return this.http.post<Booking>(`${this.enviroment.apiBookings}`, booking);
   }
 
+  //PARA UN UPDATE
+  putBooking(booking: Booking) {
+    return this.http.put<Booking>(`${this.enviroment.apiBookings}/${booking.id}`, booking);
+  }
+
+  getBookingById(id: string) {
+    return this.http.get<Booking>(`${this.enviroment.apiBookings}?id=${id}`);
+  }
+  //PARA UN UPDATE
+
+  getBookingByCompanyEmail(companyEmail: string) {
+    return this.http.get<Booking[]>(`${this.enviroment.apiBookings}?companyEmail=${companyEmail}`);
+  }
+
   getVenues() {
     return this.http.get<Venue[]>(`${this.enviroment.apiVenues}`);
   }
