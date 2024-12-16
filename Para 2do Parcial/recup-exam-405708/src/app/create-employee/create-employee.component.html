@@ -1,0 +1,203 @@
+
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Registro de Empleado</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="reactiveForm" (ngSubmit)="save()">
+        <div class="row mb-4">
+          <h4>Información Personal</h4>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" formControlName="firstName" [ngClass]="onValidate('firstName')">
+            @if (reactiveForm.controls["firstName"]; as firstName) 
+            { 
+              @if
+            (firstName.touched && firstName.invalid) {
+              @if(
+            firstName.errors?.['required']){
+            <div class="invalid-feedback">El Nombre es requerido</div>
+            } 
+            @if(firstName.errors?.['minLength']){
+            <span class="invalid-feedback">Minimo 3 caracteres</span>
+            }
+          }
+        }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" formControlName="lastName" [ngClass]="onValidate('lastName')">
+            @if (reactiveForm.controls["lastName"]; as lastName) 
+            { 
+              @if
+            (lastName.touched && lastName.invalid) {
+              @if(
+            lastName.errors?.['required']){
+            <div class="invalid-feedback">El Apellido es requerido</div>
+            } 
+            @if(lastName.errors?.['minLength']){
+            <span class="invalid-feedback">Minimo 3 caracteres</span>
+            }
+          }
+        }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" [ngClass]="onValidate('email')">
+            @if (reactiveForm.controls["email"]; as email) 
+            { 
+              @if
+                (email.touched && email.invalid) {
+              @if(
+            email.errors?.['required']){
+            <div class="invalid-feedback">El email es requerido</div>
+            } 
+            @if(email.errors?.['email']){
+            <span class="invalid-feedback">El formato no es correcto</span>
+            }
+
+          }
+        }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">DNI</label>
+            <input type="text" class="form-control" formControlName="dni" [ngClass]="onValidate('dni')">
+            @if (reactiveForm.controls["dni"]; as dni) 
+            { 
+              @if
+                (dni.touched && dni.invalid) {
+              @if(
+            dni.errors?.['required']){
+            <div class="invalid-feedback">El DNI es requerido</div>
+            } 
+            @if(dni.errors?.['minLength']){
+            <span class="invalid-feedback">Debe ser de 8 Digitos</span>
+            }
+            @if(dni.errors?.['maxLength']){
+              <span class="invalid-feedback">Debe ser de 8 Digitos</span>
+              }
+              @if(dni.errors?.['dniNotExists']){
+                <span class="invalid-feedback">El DNI no existe</span>
+            }
+
+          }
+        }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Departamento</label>
+            <select class="form-select" formControlName="departamentId" [ngClass]="onValidate('departamentId')">
+              @for(itemD of selectDept; track $index) {
+              <option [value]="itemD.id">{{ itemD.name }}</option>
+              }
+            </select>
+            @if (reactiveForm.controls["departamentId"]; as departamentId) { @if
+              (departamentId.touched && departamentId.invalid) {
+                <span class="invalid-feedback">Debe seleccionar una opcion</span>
+              } 
+          }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Salario Base</label>
+            <input type="number" class="form-control" formControlName="baseSalary" [ngClass]="onValidate('baseSalary')">
+            @if (reactiveForm.controls["baseSalary"]; as baseSalary) 
+            { 
+              @if
+                (baseSalary.touched && baseSalary.invalid) {
+              @if(
+            baseSalary.errors?.['required']){
+            <div class="invalid-feedback">El Salario es requerido</div>
+            } 
+            @if(baseSalary.errors?.['min']){
+            <span class="invalid-feedback">El minimo requerido es 0</span>
+            }
+          }
+        }
+          </div>
+
+        </div>
+
+        <!-- Familiares -->
+        <div class="row mb-3">
+          <div class="col">
+            <h4>Familiares</h4>
+            <div>
+              <div class="card mb-3" formArrayName="relatives">
+                @for (item of relatives.controls; track $index) {
+                <div class="card-body" [formGroupName]="$index" >
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Nombre</label>
+                      <input type="text" class="form-control" formControlName="firstName" [ngClass]="onValidateFrmAr($index, 'firstName')">
+                      @if(item.get('firstName')?.touched && item.get('firstName')?.invalid){
+                        @if(item.get('firstName')?.errors?.['required']){
+                          <span class="invalid-feedback">El nombre del familiar es requerido</span>
+                        }
+                    }
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Parentesco</label>
+                      <select class="form-select" formControlName="relationship" [ngClass]="onValidateFrmAr($index, 'relationship')">
+                        @for(relation of selectRelatives; track relation; let index =
+                      $index){
+                      <option [value]="relation">{{ relation }}</option>
+                      }
+                      </select>
+                      @if(item.get('relationship')?.touched && item.get('relationship')?.invalid){
+                        <span class="invalid-feedback"
+                        >Debe seleccionar una opcion</span>
+                    }
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">DNI</label>
+                      <input type="text" class="form-control" formControlName="dni" [ngClass]="onValidateFrmAr($index, 'dni')">
+                      @if(item.get('dni')?.touched && item.get('dni')?.invalid){
+                        @if(item.get('dni')?.errors?.['required']){
+                          <span class="invalid-feedback">El dni es requerido</span>
+                        }
+      
+                        @if(item.get('dni')?.errors?.['minLength']){
+                          <span class="invalid-feedback">Se requieren 8 digitos</span>
+                        }
+
+                    }
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Fecha de Nacimiento</label>
+                      <input type="date" class="form-control" formControlName="birthDate" [ngClass]="onValidateFrmAr($index, 'birthDate')">
+                      @if(item.get('birthDate')?.touched && item.get('birthDate')?.invalid){
+                        @if(item.get('birthDate')?.errors?.['required']){
+                          <span class="invalid-feedback">La fecha es requerida</span>
+                        }
+
+                    }
+                    </div>
+                    <div class="col-12">
+                      <button type="button" class="btn btn-danger" (click)="onDeleteEvent($index)">
+                        Eliminar Familiar
+                      </button>
+                    </div>
+                  </div>
+                
+                </div>
+              }
+              </div>
+            </div>
+            <button type="button" class="btn btn-secondary" (click)="onNewEvent()">
+              Agregar Familiar
+            </button>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col">
+            <button type="submit" class="btn btn-primary me-2" [disabled]="reactiveForm.invalid">Guardar</button>
+            <button type="button" class="btn btn-secondary">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

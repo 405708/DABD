@@ -1,0 +1,57 @@
+<div class="row mt-3">
+  <div class="col">
+    <button class="btn btn-primary" routerLink="create">
+      Crear Nuevo Empleado
+    </button>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2>Lista de Empleados</h2>
+      <div class="card">
+        <div class="card-body">
+          <div class="row mt-3 mb-3">
+            <!-- Filtros -->
+      <div class="col-md-6">
+        <label class="form-label">Buscar</label>
+        <input type="text" 
+          placeholder="Busque por nombre o apellido..." 
+          class="form-control" 
+          style="margin: 10px;" 
+          id="search"
+          [formControl]="searchTerm">
+      </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nombre Completo</th>
+                    <th>Email</th>
+                    <th>Departamento</th>
+                    <th>Familiares</th>
+                    <th>Salario Base</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(employee of employees; track $index){
+                  <tr>
+                    <td>{{employee?.firstName}} {{employee?.lastName}}</td>
+                    <td>{{employee?.email}}</td>
+                    <td>{{employee?.departmentId}}</td>
+                    <td>{{employee?.relatives?.length}}</td>
+                    <td>{{(employee?.baseSalary) || 'N/A' }} </td> 
+                    <!-- Alguien creo algo que no es un number y se rompe con | currency -->
+                  </tr>
+                }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
