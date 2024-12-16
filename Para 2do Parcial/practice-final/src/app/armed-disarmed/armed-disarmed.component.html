@@ -1,0 +1,24 @@
+<div class="container">
+    <h3>Desde este panel usted puede manejar su alarma:</h3>
+     @if(armed){
+        <button type="button" class="btn btn-outline-danger w-100 py-3 mt-3"
+        (click)="desarmar()">
+        Desarmar
+    </button>  
+     }
+     @else {
+        <div>
+            <label for="">Modo:</label>
+            <select class="form-select">
+              @for(mode of alarmModes; track $index){
+                  <option [value]="$index">{{mode.name}}</option>
+              }
+            </select>
+        </div>
+        <button type="button" class="btn btn-outline-success w-100 py-3 mt-3"
+        (click)="armar()">
+            Armar
+        </button> 
+     }
+</div>
+  

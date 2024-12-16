@@ -1,0 +1,69 @@
+<div class="container">
+    <form [formGroup]="reactiveFormMode" (ngSubmit)="save()">
+        <div class="container p-3 mb-3 rounded border">
+          <div class="bg-light p-2 rounded-top">
+            <p>Info General</p>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+            <input type="text" class="form-control form-control-lg rounded" disabled [value]="userLogged.email">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control form-control-lg rounded"
+             formControlName="name"
+             [ngClass]="onValidate('name')">
+             @if (reactiveFormMode.controls["name"]; as name) 
+            { 
+              @if
+            (name.touched && name.invalid) {
+              @if(
+            name.errors?.['required']){
+            <div class="invalid-feedback">El Nombre es requerido</div>
+            } 
+            @if(name.errors?.['minLength']){
+            <span class="invalid-feedback">Minimo 5 caracteres</span>
+            }
+            @if(name.errors?.['nameLimit']){
+                <div class="invalid-feedback">Ya existe un modo con ese nombre.</div>
+                }
+          }
+        }
+          </div>
+        </div>
+      
+        <div class="container p-3 mb-3 rounded border">
+          <div class="bg-light p-2 rounded-top">
+            <p>Zonas</p>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-info" (click)="onNewZone()">+</button>
+          </div>
+          <div class="mb-3" formArrayName="zones">
+            @for(zoneControl of zones.controls; track $index){
+              <div [formGroupName]="$index">
+                <label class="form-label">Zona {{$index + 1}}:</label>
+                <div class="d-flex">
+                  <select class="form-select" formControlName="id">
+                    @for(zone of alarmZones; track $index){
+                      <option [value]="zone.id">{{zone.name}}</option>
+                    }
+                  </select>
+                  <button type="button" class="btn btn-dark" (click)="onDeleteZone($index)">X</button>    
+                </div>
+              </div>
+            }
+            @if(reactiveFormMode.hasError('duplicateZone', 'zones')){
+                <div class="text-danger">
+                  Hay Zonas Duplicadas
+                </div>
+              }
+          </div>
+        </div>
+      
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" class="btn btn-secondary rounded" (click)="return()">Cancelar</button>
+          <button type="submit" class="btn btn-primary rounded" [disabled]="!reactiveFormMode.valid">Guardar</button>
+        </div>
+      </form>
+</div>

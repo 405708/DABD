@@ -1,0 +1,271 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "user1@example.com",
+      "password": "Password*123"
+    },
+    {
+      "id": 2,
+      "email": "user2@example.com",
+      "password": "Password*123"
+    }
+  ],
+  "alarm-mode": [
+    {
+      "name": "Night Mode",
+      "userId": "1",
+      "creationDate": "2024-12-15T22:00:00Z",
+      "zones": [
+        "Living Room",
+        "Kitchen",
+        "Bedroom"
+      ]
+    },
+    {
+      "name": "Away Mode",
+      "userId": "2",
+      "creationDate": "2024-12-15T08:00:00Z",
+      "zones": [
+        "Living Room",
+        "Garage",
+        "Yard"
+      ]
+    },
+    {
+      "id": "7c40",
+      "name": "",
+      "userId": "",
+      "creationDate": "2024-12-16T03:58:26.164Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "1879",
+      "name": "La noche llama",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:10.171Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "9899",
+      "name": "La noche llama",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:10.171Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        },
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "2020",
+      "name": "La noche llama",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:10.171Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "32e8",
+      "name": "La noche llama",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:10.171Z",
+      "zones": []
+    },
+    {
+      "id": "8fc1",
+      "name": "afasfafafsd",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:51.165Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "05c4",
+      "name": "afasfafafsd",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:00:51.165Z",
+      "zones": []
+    },
+    {
+      "id": "a835",
+      "name": "asdfadfadfaf",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:01:39.971Z",
+      "zones": []
+    },
+    {
+      "id": "17a4",
+      "name": "afasasfafasdfaf",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:03:15.951Z",
+      "zones": []
+    },
+    {
+      "id": "2e59",
+      "name": "afasasfafasdfaf",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:03:15.951Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "0c77",
+      "name": "afasasfafasdfaf",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:03:15.951Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        },
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "cafc",
+      "name": "",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:06:16.844Z",
+      "zones": [
+        {
+          "id": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "c371",
+      "name": "Nombre",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:12:13.167Z",
+      "zones": [
+        {
+          "id": "1",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "e9a2",
+      "name": "Password",
+      "userId": 2,
+      "creationDate": "2024-12-16T04:34:22.350Z",
+      "zones": [
+        {
+          "id": "1",
+          "name": ""
+        },
+        {
+          "id": "2",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "id": "255a",
+      "name": "Password123",
+      "userId": 1,
+      "creationDate": "2024-12-16T04:35:40.197Z",
+      "zones": [
+        {
+          "id": "1",
+          "name": ""
+        },
+        {
+          "id": "2",
+          "name": ""
+        }
+      ]
+    }
+  ],
+  "alarm-status": [
+    {
+      "id": 1,
+      "isActive": true,
+      "userId": "1"
+    },
+    {
+      "id": 2,
+      "isActive": false,
+      "userId": "1"
+    },
+    {
+      "id": 3,
+      "isActive": true,
+      "userId": "2"
+    },
+    {
+      "id": 100,
+      "isActive": false,
+      "userId": 2
+    },
+    {
+      "id": 101,
+      "isActive": true,
+      "userId": 2
+    },
+    {
+      "id": 101,
+      "isActive": true,
+      "userId": 1
+    },
+    {
+      "id": 100,
+      "isActive": false,
+      "userId": 1
+    }
+  ],
+  "alarm-zones": [
+    {
+      "id": 1,
+      "name": "Living Room"
+    },
+    {
+      "id": 2,
+      "name": "Kitchen"
+    },
+    {
+      "id": 3,
+      "name": "Bedroom"
+    },
+    {
+      "id": 4,
+      "name": "Garage"
+    },
+    {
+      "id": 5,
+      "name": "Yard"
+    }
+  ]
+}

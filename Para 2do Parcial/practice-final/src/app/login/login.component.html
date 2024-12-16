@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <form class="w-50" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <label for="exampleInputEmail1" class="form-label fs-5">Usuario</label>
+            <input type="email" class="form-control form-control-lg" 
+            id="exampleInputEmail1" 
+            formControlName="email"
+            [ngClass]="onValidate('email')">
+            @if (reactiveForm.controls["email"]; as email) 
+            { @if(email.touched &&
+             email.errors?.['required']){
+                <div class="invalid-feedback">El email es requerido</div>
+            } @if(email.errors?.['email']){
+            <span class="invalid-feedback">El formato no es correcto</span>
+            }
+      }
+        </div>
+        <div class="mb-4">
+            <label for="exampleInputPassword1" class="form-label fs-5">Clave</label>
+            <input type="password" class="form-control form-control-lg" 
+            id="exampleInputPassword1" 
+            formControlName="password"
+            [ngClass]="onValidate('password')">
+            @if (reactiveForm.controls["password"]; as password) 
+            { @if(password.touched &&
+             password.errors?.['required']){
+                <div class="invalid-feedback">La clave es requerida</div>
+            } 
+            @if(password.errors?.['passwordInvalid']){
+                <div class="invalid-feedback"> La contraseña debe tener al menos 10 caracteres, 1 mayúscula, 1 minúscula y 1 carácter especial.</div>
+            }
+      }
+            
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="!reactiveForm.valid">Ingresar</button>
+    </form>
+</div>
+
+
+
+
