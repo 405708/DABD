@@ -1,0 +1,80 @@
+ng g d directive-name
+
+import { Directive, ElementRef, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appDescDirective]',
+  standalone: true
+})
+export class DescDirectiveDirective {
+
+  constructor(private el : ElementRef) { 
+  }
+
+  @HostListener('dblclick') onDblClick(){
+    this.modificar();
+  }
+
+  
+  private modificar(){
+    this.el.nativeElement.style.color = 'antiquewhite';
+    if(this.el.nativeElement.style.fontSize == "30px"){
+      this.el.nativeElement.style.fontSize = "17px"
+    }
+    else this.el.nativeElement.style.fontSize = "30px"
+  }
+
+  @HostListener('click') onClick(){
+    this.ocultar();
+  }
+
+  private ocultar(){
+    if(this.el.nativeElement.style.opacity == '0'){
+      this.el.nativeElement.style.opacity = '1';
+    }
+    else {
+      this.el.nativeElement.style.opacity = '0';
+    }
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.el.nativeElement.style.border = '5px solid green';
+  }
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.el.nativeElement.style.border = '1px black';
+  }
+
+}
+
+uso:
+<p appDescDirective style="color: antiquewhite;">{{descToShow | desc}}</p>
+
+pd: llamar a la pipe "desc" hace que puedas usar todas sus funciones en donde lo pongas
+
+
+---------------------------------------------------------------
+
+
+export class CleanChatDirective {
+
+  //Le digo que voy a modificar un componente de tipo chat-sala
+  constructor(@Host() @Optional() private chatSalaComponent: ChatSalaComponent) { }
+
+  @HostListener('click') onClick() {
+    if (this.chatSalaComponent) {
+      this.chatSalaComponent.mensajes = [];
+    }
+  }
+  //Este es de prueba
+  //generame un evento que al hacer doble click se agregen 50 mensajes diciendo hola
+  @HostListener('dblclick') onDblClick() {
+    if (this.chatSalaComponent) {
+      for (let i = 0; i < 50; i++) {
+        this.chatSalaComponent.mensajes.push({ nombre: 'Hacker', texto: 'Fuiste hackeado por el prestigio!' , fecha: new Date() });
+      }
+    }
+  }
+}
+

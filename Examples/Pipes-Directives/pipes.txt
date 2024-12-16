@@ -1,0 +1,43 @@
+ng g p pipe-name
+
+Examples:
+
+---------------------------------------------------------------
+
+export class DescPipe implements PipeTransform {
+
+  transform(value: string): string {
+    if(!value) return value;
+    return "Descripcion: " + value.toUpperCase() + " - Letras: " +  value.length
+  }
+
+}
+
+
+---------------------------------------------------------------
+
+export class FirstMayusPipe implements PipeTransform {
+
+  //Cambiar a que solo la primera sea mayus
+  transform(value: string): string {
+    if (!value) return value;
+    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+  }
+
+}
+
+
+
+---------------------------------------------------------------
+
+export class SortPipe implements PipeTransform {
+
+  //Para acomodar la lista de string del nombre
+  transform(array: any[], field: string): any[] {
+    if (!array) return [];
+    return array.sort((a, b) => a[field].localeCompare(b[field]));
+  }
+
+}
+
+uso:  @for(file of files | sort:"name"; track file; let index=$index){
